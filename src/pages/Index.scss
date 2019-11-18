@@ -1,0 +1,16 @@
+$w: 500px;
+
+.overlay-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+
+  & div {
+    height: inherit;
+    width: $w;
+    margin-left: calc((100% - #{$w}) * .66);
+    margin-right: calc((100% - #{$w}) * .33);
+  }
+}
