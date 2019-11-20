@@ -6,7 +6,7 @@ import useBlur from '../hooks/useBlurBackground';
 import InterlocutorsTemplate from '../components/interlocutors/InterlocutorsTemplate';
 import ChatTemplate from '../components/chat/ChatTemplate';
 import AuthSection from '../components/auth/AuthSection';
-import './Index.scss';
+import styles from './Index.module.scss';
 
 const Index: React.FC = function() {
   const contRef = React.useRef(null);
@@ -37,8 +37,8 @@ const Index: React.FC = function() {
         </Row>
       </Container>
       { !userLogIn &&
-          <div className="overlay-container">
-            <div>
+          <div className={styles.overlayContainer}>
+            <div className={styles.column}>
               <AuthSection></AuthSection>
             </div>
           </div>

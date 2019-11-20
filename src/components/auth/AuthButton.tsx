@@ -2,7 +2,7 @@ import React, { MouseEvent } from 'react';
 import { Button } from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { IconProp } from '@fortawesome/fontawesome-svg-core';
-import './AuthButton.scss';
+import styles from './AuthButton.module.scss';
 
 export interface AuthButtonProps {
   icon: IconProp,
@@ -18,10 +18,10 @@ const AuthButton = function(props: AuthButtonProps) {
     }
   };
   return (
-    <Button block onClick={buttonClick} className={"button " + props.className}>
-      <div className="inner">
+    <Button block onClick={buttonClick} className={styles.button + ' ' + props.className}>
+      <div className={styles.inner}>
         <FontAwesomeIcon icon={props.icon}></FontAwesomeIcon>
-        <span>{props.text}</span>
+        <span className={styles.text}>{props.text}</span>
       </div>
     </Button>
   );

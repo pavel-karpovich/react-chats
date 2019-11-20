@@ -4,9 +4,13 @@
   justify-content: center;
 
   .inner {
-    width: 160px;
+    width: 190px;
     margin: 2px 10px;
     display: flex;
-    justify-content: flex-start;
+    align-items: center;
+
+    .text {
+      margin-left: 10px;
+    }
   }
 }
