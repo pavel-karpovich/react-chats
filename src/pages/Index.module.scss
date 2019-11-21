@@ -1,4 +1,4 @@
-$w: 500px;
+@import '~bootstrap/scss/bootstrap.scss';
 
 .overlayContainer {
   position: absolute;
@@ -6,15 +6,21 @@ $w: 500px;
   left: 0;
   width: 100%;
   height: 100%;
+
+  .column {
+    height: inherit;
+    width: auto;
+  }
 }
-@media (min-width: $w) {
+
+@media (min-width: map-get($grid-breakpoints, sm)) {
   .overlayContainer {
-    padding-left: calc((100% - #{$w}) * .66);
-    padding-right: calc((100% - #{$w}) * .33);
+    padding-left: calc((100% - #{map-get($grid-breakpoints, sm)}) * .66);
+    padding-right: calc((100% - #{map-get($grid-breakpoints, sm)}) * .33);
 
     .column {
-      height: inherit;
-      width: auto;
+      border-left: 1px solid #333;
+      border-right: 1px solid #333;
     }
   }
 }

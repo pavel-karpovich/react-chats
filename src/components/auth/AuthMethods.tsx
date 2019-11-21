@@ -13,36 +13,38 @@ const AuthMethods = function() {
     <div className={styles.squareBraces}>
       <div className={styles.gasket}>
         <div className={styles.container}>
-          <AuthButton 
-            icon={faEnvelope}
-            text="Sign In with Email"
-            className={styles.btnEmail}
-            onClick={clickHandler}
+          <div className={styles.buttons}>
+            <AuthButton 
+              icon={faEnvelope}
+              text="Sign In with Email"
+              className={styles.btnEmail}
+              onClick={clickHandler}
+              ></AuthButton>
+            <AuthButton
+              icon={faGithub}
+              text="Sign in with GitHub"
+              className={styles.btnGithub}
+              onClick={clickHandler}
             ></AuthButton>
-          <AuthButton
-            icon={faGithub}
-            text="Sign in with GitHub"
-            className={styles.btnGithub}
-            onClick={clickHandler}
-          ></AuthButton>
-          <AuthButton
-            icon={faGooglePlus}
-            text="Sign in with Google"
-            className={styles.btnGoogle}
-            onClick={clickHandler}
-          ></AuthButton>
-          <AuthButton
-            icon={faFacebook}
-            text="Sign in with Facebook"
-            className={styles.btnFacebook}
-            onClick={clickHandler}
-          ></AuthButton>
-          <AuthButton
-            icon={faTwitter}
-            text="Sign in with Twitter"
-            className={styles.btnTwitter}
-            onClick={clickHandler}
-          ></AuthButton>
+            <AuthButton
+              icon={faGooglePlus}
+              text="Sign in with Google"
+              className={styles.btnGoogle}
+              onClick={clickHandler}
+            ></AuthButton>
+            <AuthButton
+              icon={faFacebook}
+              text="Sign in with Facebook"
+              className={styles.btnFacebook}
+              onClick={clickHandler}
+            ></AuthButton>
+            <AuthButton
+              icon={faTwitter}
+              text="Sign in with Twitter"
+              className={styles.btnTwitter}
+              onClick={clickHandler}
+            ></AuthButton>
+          </div>
         </div>
       </div>
     </div>
