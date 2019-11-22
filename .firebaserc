@@ -1,0 +1,14 @@
+{
+  "projects": {
+    "default": "testing-256208"
+  },
+  "targets": {
+    "testing-256208": {
+      "hosting": {
+        "chats": [
+          "chats-paradox"
+        ]
+      }
+    }
+  }
+}

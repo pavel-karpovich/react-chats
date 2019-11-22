@@ -32,6 +32,7 @@
     "start": "react-scripts start",
     "startHttps": "HTTPS=true npm start",
     "build": "react-scripts build",
+    "deploy": "firebase deploy",
     "analyze": "source-map-explorer 'build/static/js/*.js'",
     "test": "react-scripts test",
     "eject": "react-scripts eject",

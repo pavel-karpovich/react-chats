@@ -1,5 +1,6 @@
 import { ActionTypes } from './actionTypes';
-import * as Firebase from 'firebase';
+import * as Firebase from 'firebase/app';
+import 'firebase/auth';
 import { Dispatch } from 'redux';
 
 function openAuthPopup() {
