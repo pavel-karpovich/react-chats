@@ -1,56 +1,32 @@
-$braces-size: 4px;
-$braces-len: 26px;
 
-.squareBraces {
-  box-sizing: border-box;
-  background-color: #fff;
-  border: $braces-size solid #333;
-  width: 100%;
 
-  .gasket {
-    margin: -$braces-size $braces-len;
-    padding: 30px 0;
+.buttons {
+  margin: 0 50px;
+
+  .btnEmail {
+    background-color: #d7433b;
+    color: #fff;
+  }
+  .btnGithub {
+    background-color: #333;
+    color: #fff;
+  }
+  .btnGoogle {
     background-color: #fff;
-
-    .container {
-      margin: 0 #{-$braces-len};
-
-      .buttons {
-        margin: 0 50px;
-
-        .btnEmail {
-          background-color: #d7433b;
-          color: #fff;
-        }
-        .btnGithub {
-          background-color: #333;
-          color: #fff;
-        }
-        .btnGoogle {
-          background-color: #fff;
-          color: #333;
-        }
-        .btnFacebook {
-          background-color: #3e5995;
-          color: #fff;
-        }
-        .btnTwitter {
-          background-color: #5daceb;
-          color: #fff;
-        }
-      }
-    }
+    color: #333;
+  }
+  .btnFacebook {
+    background-color: #3e5995;
+    color: #fff;
+  }
+  .btnTwitter {
+    background-color: #5daceb;
+    color: #fff;
   }
 }
 
 @media (max-width: 490px) {
-  .squareBraces {
-    .gasket {
-      .container {
-        .buttons {
-          margin: 0 10px;
-        }
-      }
-    }
+  .buttons {
+    margin: 0 10px;
   }
 }

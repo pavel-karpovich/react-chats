@@ -1,0 +1,20 @@
+$braces-size: 4px;
+$braces-len: 26px;
+
+.squareBraces {
+  box-sizing: border-box;
+  background-color: #fff;
+  border: $braces-size solid #333;
+  width: 100%;
+
+  .gasket {
+    margin: -$braces-size $braces-len;
+    padding: 30px 0;
+    background-color: #fff;
+
+    .container {
+      margin: 0 #{-$braces-len};
+    }
+  }
+}
+  

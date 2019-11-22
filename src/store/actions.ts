@@ -43,6 +43,29 @@ export function authWithGithub() {
   };
 }
 
+export function authWithGoogle() {
+  return async (dispatch: Dispatch<any>) => {
+    dispatch(openAuthPopup());
+    const provider = new Firebase.auth.GoogleAuthProvider();
+    provider.setCustomParameters({
+      login_hint: 'user@example.com',
+    });
+    try {
+      const result = await Firebase.auth().signInWithPopup(provider);
+      if (result.user) {
+        const token = await result.user.getIdToken();
+        console.log(token);
+      }
+      const user = result.user;
+      console.log(user);
+      dispatch(authCommit((user && user.displayName) || 'Facebooker'));
+    } catch (error) {
+      console.log(error);
+      dispatch(authFailed(error.message));
+    }
+  };
+}
+
 export function authWithFacebook() {
   return async (dispatch: Dispatch<any>) => {
     dispatch(openAuthPopup());
