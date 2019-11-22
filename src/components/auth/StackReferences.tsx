@@ -4,7 +4,7 @@ import { ReactComponent as FirebaseLogo } from 'assets/firebase_logo.svg';
 import { Container, Row } from 'react-bootstrap';
 import styles from './StackReferences.module.scss';
 
-const StackReferences = function() {
+const StackReferences: React.FC = function() {
   return (
     <Container className={styles.stack}>
       <Row>Developed with:</Row>

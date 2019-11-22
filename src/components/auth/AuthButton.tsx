@@ -11,7 +11,7 @@ export interface AuthButtonProps {
   className?: string,
 };
 
-const AuthButton = function(props: AuthButtonProps) {
+const AuthButton: React.FC<AuthButtonProps> = function(props: AuthButtonProps) {
   const buttonClick = function(e: MouseEvent) {
     if (props.onClick) {
       props.onClick(e);

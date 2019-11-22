@@ -6,7 +6,7 @@ import { useDispatch } from 'react-redux';
 import { logIn } from '../../store/actions';
 import styles from './AuthMethods.module.scss';
 
-const AuthMethods = function() {
+const AuthMethods: React.FC = function() {
   const dispatch = useDispatch();
   const clickHandler = () => dispatch(logIn());
   return (
