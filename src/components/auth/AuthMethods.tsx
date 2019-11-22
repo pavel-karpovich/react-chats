@@ -3,12 +3,13 @@ import AuthButton from './AuthButton';
 import { faEnvelope } from '@fortawesome/free-solid-svg-icons';
 import { faGithub, faGooglePlus, faFacebook, faTwitter } from '@fortawesome/free-brands-svg-icons';
 import { useDispatch } from 'react-redux';
-import { logIn } from '../../store/actions';
+import { logIn, authWithGithub } from '../../store/actions';
 import styles from './AuthMethods.module.scss';
 
 const AuthMethods: React.FC = function() {
   const dispatch = useDispatch();
   const clickHandler = () => dispatch(logIn());
+  const authViaGithub = () => authWithGithub()(dispatch);
   return (
     <div className={styles.squareBraces}>
       <div className={styles.gasket}>
@@ -24,7 +25,7 @@ const AuthMethods: React.FC = function() {
               icon={faGithub}
               text="Sign in with GitHub"
               className={styles.btnGithub}
-              onClick={clickHandler}
+              onClick={authViaGithub}
             ></AuthButton>
             <AuthButton
               icon={faGooglePlus}
