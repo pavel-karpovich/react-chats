@@ -23,6 +23,25 @@ function authCommit(username: string) {
   } as const;
 }
 
+export function simpleSignUp(name: string, email: string, password: string) {
+  return async (dispatch: Dispatch<any>) => {
+    try {
+      const result = await Firebase.auth().createUserWithEmailAndPassword(email, password);
+      if (result.user) {
+        await result.user.updateProfile({ displayName: name });
+        const token = await result.user.getIdToken();
+        console.log(token);
+      }
+      const user = result.user;
+      console.log(user);
+      dispatch(authCommit((user && user.displayName) || 'User'));
+    } catch (error) {
+      console.log(error);
+      dispatch(authFailed(error.message));
+    }
+  };
+}
+
 export function authWithGithub() {
   return async (dispatch: Dispatch<any>) => {
     dispatch(openAuthPopup());
