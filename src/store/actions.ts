@@ -35,7 +35,27 @@ export function authWithGithub() {
       }
       const user = result.user;
       console.log(user);
-      dispatch(authCommit((user && user.displayName) || 'Some'));
+      dispatch(authCommit((user && user.displayName) || 'Githuber'));
+    } catch (error) {
+      console.log(error);
+      dispatch(authFailed(error.message));
+    }
+  };
+}
+
+export function authWithFacebook() {
+  return async (dispatch: Dispatch<any>) => {
+    dispatch(openAuthPopup());
+    const provider = new Firebase.auth.FacebookAuthProvider();
+    try {
+      const result = await Firebase.auth().signInWithPopup(provider);
+      if (result.user) {
+        const token = await result.user.getIdToken();
+        console.log(token);
+      }
+      const user = result.user;
+      console.log(user);
+      dispatch(authCommit((user && user.displayName) || 'Facebooker'));
     } catch (error) {
       console.log(error);
       dispatch(authFailed(error.message));
