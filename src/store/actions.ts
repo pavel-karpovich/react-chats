@@ -16,10 +16,12 @@ function authFailed(error: string) {
   } as const;
 }
 
-function authCommit(username: string) {
+export function authCommit(email: string, username: string | null, pictureUrl: string | null) {
   return {
     type: ActionTypes.AUTH_SUCCESSFUL,
+    email,
     username,
+    pictureUrl,
   } as const;
 }
 
@@ -29,12 +31,7 @@ export function simpleSignUp(name: string, email: string, password: string) {
       const result = await Firebase.auth().createUserWithEmailAndPassword(email, password);
       if (result.user) {
         await result.user.updateProfile({ displayName: name });
-        const token = await result.user.getIdToken();
-        console.log(token);
       }
-      const user = result.user;
-      console.log(user);
-      dispatch(authCommit((user && user.displayName) || 'User'));
     } catch (error) {
       console.log(error);
       dispatch(authFailed(error.message));
@@ -43,18 +40,11 @@ export function simpleSignUp(name: string, email: string, password: string) {
 }
 
 export function authWithGithub() {
-  return async (dispatch: Dispatch<any>) => {
+  return (dispatch: Dispatch<any>) => {
     dispatch(openAuthPopup());
     const provider = new Firebase.auth.GithubAuthProvider();
     try {
-      const result = await Firebase.auth().signInWithPopup(provider);
-      if (result.user) {
-        const token = await result.user.getIdToken();
-        console.log(token);
-      }
-      const user = result.user;
-      console.log(user);
-      dispatch(authCommit((user && user.displayName) || 'Githuber'));
+      Firebase.auth().signInWithPopup(provider);
     } catch (error) {
       console.log(error);
       dispatch(authFailed(error.message));
@@ -63,21 +53,14 @@ export function authWithGithub() {
 }
 
 export function authWithGoogle() {
-  return async (dispatch: Dispatch<any>) => {
+  return (dispatch: Dispatch<any>) => {
     dispatch(openAuthPopup());
     const provider = new Firebase.auth.GoogleAuthProvider();
     provider.setCustomParameters({
       login_hint: 'user@example.com',
     });
     try {
-      const result = await Firebase.auth().signInWithPopup(provider);
-      if (result.user) {
-        const token = await result.user.getIdToken();
-        console.log(token);
-      }
-      const user = result.user;
-      console.log(user);
-      dispatch(authCommit((user && user.displayName) || 'Facebooker'));
+      Firebase.auth().signInWithPopup(provider);
     } catch (error) {
       console.log(error);
       dispatch(authFailed(error.message));
@@ -86,18 +69,11 @@ export function authWithGoogle() {
 }
 
 export function authWithFacebook() {
-  return async (dispatch: Dispatch<any>) => {
+  return (dispatch: Dispatch<any>) => {
     dispatch(openAuthPopup());
     const provider = new Firebase.auth.FacebookAuthProvider();
     try {
-      const result = await Firebase.auth().signInWithPopup(provider);
-      if (result.user) {
-        const token = await result.user.getIdToken();
-        console.log(token);
-      }
-      const user = result.user;
-      console.log(user);
-      dispatch(authCommit((user && user.displayName) || 'Facebooker'));
+      Firebase.auth().signInWithPopup(provider);
     } catch (error) {
       console.log(error);
       dispatch(authFailed(error.message));

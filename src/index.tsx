@@ -2,6 +2,8 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { HashRouter } from 'react-router-dom';
 import CatchErrors from './CatchErrors';
+import { Provider } from 'react-redux';
+import Store from './store/store';
 import './config/firebase';
 import './css/themes/custom.scss';
 import './index.scss';
@@ -12,7 +14,9 @@ ReactDOM.render(
   <CatchErrors>
     <React.StrictMode>
       <HashRouter>
-        <App />
+        <Provider store={Store}>
+          <App />
+        </Provider>
       </HashRouter>
     </React.StrictMode>
   </CatchErrors>,

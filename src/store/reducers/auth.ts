@@ -5,7 +5,9 @@ export type AuthState = {
   readonly popup: boolean,
   readonly error: string | null,
   readonly user: {
-    readonly name: string,
+    readonly email: string,
+    readonly name: string | null,
+    readonly pictureUrl: string | null,
   } | null,
 };
 
@@ -22,7 +24,16 @@ export default function(state = initialState, action: SomeAuthAction) {
     case ActionTypes.AUTH_UNSUCCESSFUL:
       return { ...state, popup: false, error: action.error, user: null };
     case ActionTypes.AUTH_SUCCESSFUL:
-      return { ...state, popup: false, error: null, user: { name: action.username } };
+      return {
+        ...state,
+        popup: false,
+        error: null,
+        user: {
+          email: action.email,
+          name: action.username,
+          pictureUrl: action.pictureUrl,
+        }
+      };
     default:
       return state;
   }

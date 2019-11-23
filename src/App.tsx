@@ -1,14 +1,12 @@
 import React from 'react';
-import { Provider } from 'react-redux';
-import Store from './store/store';
 import './App.scss';
 import Index from './pages/Index';
+import useFirebaseAuth from 'hooks/useFirebaseAuth';
 
 const App: React.FC<{}> = () => {
+  useFirebaseAuth();
   return (
-    <Provider store={Store}>
-      <Index />
-    </Provider>
+    <Index />
   );
 }
 
