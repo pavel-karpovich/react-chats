@@ -105,22 +105,8 @@ export function authWithFacebook() {
   };
 }
 
-export function logIn() {
-  return {
-    type: ActionTypes.LOGIN,
-  } as const;
-}
-
-export function logOut() {
-  return {
-    type: ActionTypes.LOGOUT,
-  } as const;
-}
-
 export type SomeAuthAction = ReturnType<
   typeof openAuthPopup |
   typeof authFailed |
-  typeof authCommit |
-  typeof logIn |
-  typeof logOut
+  typeof authCommit
 >

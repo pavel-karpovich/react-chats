@@ -6,9 +6,3 @@ export enum ActionTypes {
   AUTH_SUCCESSFUL = 'AUTH_SUCCESSFUL',
   LOGOUT = 'LOGOUT',
 }
-
-export enum AuthStatus {
-  LogIn,
-  LogOut,
-  Unknown,
-}

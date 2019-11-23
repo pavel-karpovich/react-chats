@@ -11,7 +11,6 @@ import {
   faTwitter,
 } from '@fortawesome/free-brands-svg-icons';
 import {
-  logIn,
   authWithGithub,
   authWithGoogle,
   authWithFacebook,
@@ -21,7 +20,6 @@ import styles from './AuthMethods.module.scss';
 const AuthMethods: React.FC = function() {
   const dispatch = useDispatch();
   const [signUp, setSignUp] = useState(false);
-  const clickHandler = () => dispatch(logIn());
   const classicSighUp = () => setSignUp(true);
   const authViaGithub = () => authWithGithub()(dispatch);
   const authViaGoogle = () => authWithGoogle()(dispatch);
@@ -58,7 +56,7 @@ const AuthMethods: React.FC = function() {
             icon={faTwitter}
             text="Sign in with Twitter"
             className={styles.btnTwitter}
-            onClick={clickHandler}
+            onClick={() => {}}
           ></AuthButton>
         </div>
       }

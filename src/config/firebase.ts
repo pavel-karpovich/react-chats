@@ -1,4 +1,5 @@
 import * as Firebase from 'firebase/app';
+import 'firebase/auth';
 
 const firebaseConfig = {
   apiKey: "AIzaSyBTJy7o-NsovnoQrbADVPyWVn3MYmp321o",
@@ -12,3 +13,12 @@ const firebaseConfig = {
 };
 
 Firebase.initializeApp(firebaseConfig);
+
+Firebase.auth().onAuthStateChanged(function (user) {
+  if (user) {
+    console.log('User is log in');
+    console.log(user);
+  } else {
+    console.log('User is not log in');
+  }
+});
