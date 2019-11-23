@@ -1,0 +1,27 @@
+
+.input {
+  min-height: 80px;
+  flex-grow: 1;
+  background-color: #fff;
+  outline: none;
+  border-radius: 12px;
+  transition: box-shadow .3s ease-out;
+  padding: 4px 20px;
+  margin: 0 0 8px 8px;
+
+  &:empty:before {
+    content: attr(data-placeholder);
+    color: grey;
+    font-style: italic;
+  }
+  &:focus {
+    box-shadow: 0 0 2px 3px rgba(0, 123, 255, .5);
+  }
+}
+.sendBtn {
+  height: 42px;
+  width: 42px;
+  border-radius: 50%;
+  outline: none;
+  margin-left: 20px;
+}
