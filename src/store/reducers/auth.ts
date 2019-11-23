@@ -39,6 +39,17 @@ export default function(state = initialState, action: SomeAuthAction) {
         ...state,
         user: null,
       };
+    case ActionTypes.UPDATE_USER_NAME:
+      if (state.user) {
+        return {
+          ...state,
+          user: {
+            ...state.user,
+            name: action.username,
+          },
+        };
+      }
+      return state;
     default:
       return state;
   }

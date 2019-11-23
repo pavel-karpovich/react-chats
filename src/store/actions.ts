@@ -42,6 +42,7 @@ export function simpleSignUp(name: string, email: string, password: string) {
     try {
       const result = await Firebase.auth().createUserWithEmailAndPassword(email, password);
       if (result.user) {
+        dispatch(updateUserName(name));
         await result.user.updateProfile({ displayName: name });
       }
     } catch (error) {
@@ -93,9 +94,17 @@ export function authWithFacebook() {
   };
 }
 
+export function updateUserName(newName: string) {
+  return {
+    type: ActionTypes.UPDATE_USER_NAME,
+    username: newName,
+  } as const;
+}
+
 export type SomeAuthAction = ReturnType<
   typeof openAuthPopup |
   typeof authFailed |
   typeof authCommit |
-  typeof logoutCommit
+  typeof logoutCommit |
+  typeof updateUserName
 >
