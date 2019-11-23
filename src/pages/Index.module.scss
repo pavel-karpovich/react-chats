@@ -1,7 +1,15 @@
 @import '~bootstrap/scss/bootstrap.scss';
 
-.header {
-  overflow: hidden;
+$loader-size: 128px;
+
+.loader {
+  position: absolute;
+  height: $loader-size;
+  width: $loader-size;
+  left: calc(50% - #{$loader-size} / 2);
+  top: calc(50% - #{$loader-size} / 2);
+  color: #378abe;
+  font-size: 2em;
 }
 .overlayContainer {
   position: absolute;

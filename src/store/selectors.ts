@@ -1,5 +1,8 @@
 import { AppState } from './reducers';
 
+export const isAuthInitialized = (store: AppState) =>
+  store.auth.initialized;
+
 export const isUserLogIn = (store: AppState) => 
   store.auth.user !== null;
 

@@ -38,7 +38,7 @@ const Header: React.FC<HeaderProps> = function(props) {
         <Image roundedCircle className={styles.pic}
           src={userPictureUrl || getUiAvatarUrl(userName)}
         />
-        <Navbar.Text className="ml-2 mr-5">{ userName || mockUserName }</Navbar.Text>
+        <Navbar.Text className="ml-2 mr-3 mr-md-4 mr-lg-5">{ userName || mockUserName }</Navbar.Text>
         <Button onClick={userLogout}>Log out</Button>
       </div>
     </Navbar>

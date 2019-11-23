@@ -2,6 +2,7 @@ import { ActionTypes } from '../actionTypes';
 import { SomeAuthAction } from '../actions'; 
 
 export type AuthState = {
+  readonly initialized: boolean,
   readonly popup: boolean,
   readonly error: string | null,
   readonly user: {
@@ -12,6 +13,7 @@ export type AuthState = {
 };
 
 const initialState: AuthState = {
+  initialized: false,
   popup: false,
   error: null,
   user: null,
@@ -22,10 +24,17 @@ export default function(state = initialState, action: SomeAuthAction) {
     case ActionTypes.AUTH_EXTERNAL_POPUP:
       return { ...state, popup: true };
     case ActionTypes.AUTH_UNSUCCESSFUL:
-      return { ...state, popup: false, error: action.error, user: null };
+      return { 
+        ...state,
+        initialized: true,
+        popup: false,
+        error: action.error,
+        user: null,
+      };
     case ActionTypes.AUTH_SUCCESSFUL:
       return {
         ...state,
+        initialized: true,
         popup: false,
         error: null,
         user: {
@@ -37,6 +46,7 @@ export default function(state = initialState, action: SomeAuthAction) {
     case ActionTypes.LOGOUT:
       return {
         ...state,
+        initialized: true,
         user: null,
       };
     case ActionTypes.UPDATE_USER_NAME:
