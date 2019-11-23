@@ -34,6 +34,11 @@ export default function(state = initialState, action: SomeAuthAction) {
           pictureUrl: action.pictureUrl,
         }
       };
+    case ActionTypes.LOGOUT:
+      return {
+        ...state,
+        user: null,
+      };
     default:
       return state;
   }

@@ -1,5 +1,8 @@
 @import '~bootstrap/scss/bootstrap.scss';
 
+.header {
+  overflow: hidden;
+}
 .overlayContainer {
   position: absolute;
   top: 0;

@@ -1,7 +1,7 @@
 import { useDispatch } from 'react-redux';
 import * as Firebase from 'firebase/app';
 import 'firebase/auth';
-import { authCommit } from 'store/actions';
+import { authCommit, logoutCommit } from 'store/actions';
 
 let isAlreadyCalled = false;
 
@@ -21,6 +21,7 @@ export default function useFirebaseAuth() {
       console.log(user);
     } else {
       console.log('User is not log in');
+      dispatch(logoutCommit());
     }
   });
 }

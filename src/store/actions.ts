@@ -25,6 +25,18 @@ export function authCommit(email: string, username: string | null, pictureUrl: s
   } as const;
 }
 
+export function logoutCommit() {
+  return {
+    type: ActionTypes.LOGOUT,
+  } as const;
+}
+
+export function logout() {
+  return () => {
+    Firebase.auth().signOut();
+  };
+}
+
 export function simpleSignUp(name: string, email: string, password: string) {
   return async (dispatch: Dispatch<any>) => {
     try {
@@ -84,5 +96,6 @@ export function authWithFacebook() {
 export type SomeAuthAction = ReturnType<
   typeof openAuthPopup |
   typeof authFailed |
-  typeof authCommit
+  typeof authCommit |
+  typeof logoutCommit
 >
