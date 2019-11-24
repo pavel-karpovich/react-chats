@@ -4,20 +4,10 @@ import { useSelector } from 'react-redux';
 import { logout } from 'store/actions';
 import { getUserName, getUserPictureUrl } from 'store/selectors';
 import { ReactComponent as LogoSvg } from 'assets/chats.svg';
+import { getUiAvatarUrl } from 'services/avatarUiApi';
 import styles from './Header.module.scss';
 
 const mockUserName = 'JOHN DOE';
-
-const alphabet = 'abcdefghijklmnopqrstuvwxyz';
-const uiAvatarBaseUrl = 'https://ui-avatars.com/api/?length=1&name=';
-function getUiAvatarUrl(name: string | null) {
-  if (name) {
-    return uiAvatarBaseUrl + name;
-  } else {
-    const randomLetter = alphabet[Math.floor(Math.random() * alphabet.length)];
-    return uiAvatarBaseUrl + randomLetter;
-  }
-}
 
 export interface HeaderProps {
   className?: string,

@@ -1,12 +1,8 @@
 import * as functions from 'firebase-functions';
 import * as admin from 'firebase-admin';
+import { PublicUserData } from '../../types/commonTypes';
 
-interface UserDataForUpdate {
-  name?: string,
-  pictureUrl?: string,
-};
-
-export default async function updateUserData(data: UserDataForUpdate, context: functions.https.CallableContext) {
+export default async function updateUserData(data: PublicUserData, context: functions.https.CallableContext) {
   if (!(context.auth && context.auth.token && context.auth.uid)) {
     const error = 'Unauthorized request!';
     console.log(error);
@@ -19,7 +15,7 @@ export default async function updateUserData(data: UserDataForUpdate, context: f
     console.log(error);
     throw new functions.https.HttpsError('not-found', error);
   }
-  const newObj: UserDataForUpdate = {};
+  const newObj: PublicUserData = {};
   if (data.name) {
     newObj.name = data.name;
   }
