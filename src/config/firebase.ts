@@ -1,5 +1,6 @@
 import * as Firebase from 'firebase/app';
 import 'firebase/auth';
+import 'firebase/functions';
 
 const firebaseConfig = {
   apiKey: "AIzaSyBTJy7o-NsovnoQrbADVPyWVn3MYmp321o",
@@ -13,4 +14,4 @@ const firebaseConfig = {
 };
 
 Firebase.initializeApp(firebaseConfig);
-
+Firebase.functions();

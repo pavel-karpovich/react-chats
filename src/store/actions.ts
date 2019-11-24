@@ -45,8 +45,11 @@ export function simpleSignUp(name: string, email: string, password: string) {
       const result = await Firebase.auth().createUserWithEmailAndPassword(email, password);
       if (result.user) {
         dispatch(updateUserName(name));
-        updateUserData({ uid: result.user.uid, name });
+        console.log('1');
+        updateUserData({ name });
+        console.log('2');
         result.user.updateProfile({ displayName: name });
+        console.log('3');
       }
     } catch (error) {
       console.log(error);

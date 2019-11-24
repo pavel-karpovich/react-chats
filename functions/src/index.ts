@@ -4,7 +4,6 @@ import storeUserData from './storeUserData';
 import updateUserData from './updateUserData';
 
 admin.initializeApp();
-const region = 'europe-west1';
 
-export const addUser = functions.region(region).auth.user().onCreate(storeUserData);
-export const updateUser = functions.region(region).https.onRequest(updateUserData);
+export const addUser = functions.auth.user().onCreate(storeUserData);
+export const updateUser = functions.https.onCall(updateUserData);

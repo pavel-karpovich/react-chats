@@ -1,29 +1,31 @@
 import * as functions from 'firebase-functions';
 import * as admin from 'firebase-admin';
 
-type UserDataForUpdate = {
+interface UserDataForUpdate {
   name?: string,
   pictureUrl?: string,
 };
 
-export default async function updateUserData(req: functions.https.Request, res: functions.Response) {
-  if (!req.params.uid) {
-    res.sendStatus(400);
-    return;
+export default async function updateUserData(data: UserDataForUpdate, context: functions.https.CallableContext) {
+  if (!(context.auth && context.auth.token && context.auth.uid)) {
+    const error = 'Unauthorized request!';
+    console.log(error);
+    throw new functions.https.HttpsError('unauthenticated', error);
   }
-  const docRef = admin.firestore().collection('users').doc(req.params.uid);
+  const docRef = admin.firestore().collection('users').doc(context.auth.uid);
   const oldData = await docRef.get();
-  if (oldData.exists) {
-    const newObj: UserDataForUpdate = {};
-    if (req.params.name) {
-      newObj.name = req.params.name;
-    }
-    if (req.params.pictureUrl) {
-      newObj.pictureUrl = req.params.pictureUrl;
-    }
-    res.sendStatus(200);
-    return docRef.update(newObj);
+  if (!oldData.exists) {
+    const error = 'Attempt to update non-existent user!';
+    console.log(error);
+    throw new functions.https.HttpsError('not-found', error);
   }
-  res.sendStatus(404);
-  return;
+  const newObj: UserDataForUpdate = {};
+  if (data.name) {
+    newObj.name = data.name;
+  }
+  if (data.pictureUrl) {
+    newObj.pictureUrl = data.pictureUrl;
+  }
+  console.log('User data updated');
+  return docRef.update(newObj);
 }

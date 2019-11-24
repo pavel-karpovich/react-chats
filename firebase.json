@@ -1,5 +1,7 @@
 {
   "hosting": {
+    "site": "chats-paradox",
+    "target": "chats",
     "public": "build",
     "ignore": [
       "firebase.json",
@@ -7,6 +9,14 @@
       "**/node_modules/**"
     ],
     "rewrites": [
+      {
+        "source": "api/v1/addUser",
+        "function": "addUser"
+      },
+      {
+        "source": "api/v1/updateUser",
+        "function": "updateUser"
+      },
       {
         "source": "**",
         "destination": "/index.html"
