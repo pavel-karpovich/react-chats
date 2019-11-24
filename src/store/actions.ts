@@ -1,6 +1,7 @@
 import { ActionTypes } from './actionTypes';
 import * as Firebase from 'firebase/app';
 import 'firebase/auth';
+import { updateUserData } from 'services/firebaseApi';
 import { Dispatch } from 'redux';
 
 function openAuthPopup() {
@@ -16,9 +17,10 @@ function authFailed(error: string) {
   } as const;
 }
 
-export function authCommit(email: string, username: string | null, pictureUrl: string | null) {
+export function authCommit(uid: string, email: string, username: string | null, pictureUrl: string | null) {
   return {
     type: ActionTypes.AUTH_SUCCESSFUL,
+    uid,
     email,
     username,
     pictureUrl,
@@ -43,7 +45,8 @@ export function simpleSignUp(name: string, email: string, password: string) {
       const result = await Firebase.auth().createUserWithEmailAndPassword(email, password);
       if (result.user) {
         dispatch(updateUserName(name));
-        await result.user.updateProfile({ displayName: name });
+        updateUserData({ uid: result.user.uid, name });
+        result.user.updateProfile({ displayName: name });
       }
     } catch (error) {
       console.log(error);
@@ -58,6 +61,7 @@ export function authWithGithub() {
     const provider = new Firebase.auth.GithubAuthProvider();
     try {
       Firebase.auth().signInWithPopup(provider);
+      console.log('Github Sign In');
     } catch (error) {
       console.log(error);
       dispatch(authFailed(error.message));
@@ -74,6 +78,7 @@ export function authWithGoogle() {
     });
     try {
       Firebase.auth().signInWithPopup(provider);
+      console.log('Google Sign In');
     } catch (error) {
       console.log(error);
       dispatch(authFailed(error.message));
@@ -87,6 +92,7 @@ export function authWithFacebook() {
     const provider = new Firebase.auth.FacebookAuthProvider();
     try {
       Firebase.auth().signInWithPopup(provider);
+      console.log('Facebook Sign In');
     } catch (error) {
       console.log(error);
       dispatch(authFailed(error.message));

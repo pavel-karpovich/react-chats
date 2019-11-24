@@ -6,6 +6,7 @@ export type AuthState = {
   readonly popup: boolean,
   readonly error: string | null,
   readonly user: {
+    readonly uid: string,
     readonly email: string,
     readonly name: string | null,
     readonly pictureUrl: string | null,
@@ -38,6 +39,7 @@ export default function(state = initialState, action: SomeAuthAction) {
         popup: false,
         error: null,
         user: {
+          uid: action.uid,
           email: action.email,
           name: action.username,
           pictureUrl: action.pictureUrl,

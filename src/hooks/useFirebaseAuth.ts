@@ -15,7 +15,7 @@ export default function useFirebaseAuth() {
   Firebase.auth().onAuthStateChanged(user => {
     if (user) {
       dispatch(
-        authCommit(user.email as string, user.displayName, user.photoURL)
+        authCommit(user.uid, user.email as string, user.displayName, user.photoURL)
       );
       console.log('User is log in');
       console.log(user);

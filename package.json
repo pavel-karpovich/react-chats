@@ -33,6 +33,8 @@
     "startHttps": "HTTPS=true npm start",
     "build": "react-scripts build",
     "deploy": "firebase deploy",
+    "dh": "firebase deploy --only hosting",
+    "df": "firebase deploy --only functions",
     "analyze": "source-map-explorer 'build/static/js/*.js'",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
